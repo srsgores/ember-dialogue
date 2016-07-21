@@ -15,10 +15,10 @@ test("it renders", function (assert) {
 
 	// Template block usage:
 	this.render(hbs`
-	{{#alert-message}}
-		template block text
-	{{/alert-message}}
-  `);
+		{{#alert-message}}
+			template block text
+		{{/alert-message}}
+	`);
 
 	assert.equal(this.$().text().trim(), "template block text");
 });
