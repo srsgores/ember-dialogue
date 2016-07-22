@@ -11,6 +11,7 @@ export default Ember.Component.extend({
 	open: true,
 	"aria-labelledby": Ember.computed.alias("title"),
 	"aria-describedby": Ember.computed.alias("description"),
+	dismissText: "x",
 	dismissible: true,
 	role: Ember.computed("modal", function() {
 		return this.get("modal") ? "alertdialog" : "dialog";

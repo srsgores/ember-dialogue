@@ -48,7 +48,13 @@ test("it doesn't have a dismiss button when the user disables dismissal", functi
 	assert.equal(this.$(DISMISS_SELECTOR).length, 0);
 });
 
+test("it sets the close text when the user overrides it", function(assert) {
+	this.set("dismissText", "Dismiss");
 
+	this.render(hbs`{{alert-message dismissText=dismissText}}`);
+
+	assert.equal(this.$(DISMISS_SELECTOR).text().trim(), this.get("dismissText"));
+});
 
 test("it dismisses when the user calls dismiss", function(assert) {
 	assert.expect(2);
