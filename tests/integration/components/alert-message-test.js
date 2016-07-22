@@ -52,3 +52,15 @@ test("it dismisses when the user calls dismiss", function(assert) {
 
 	assert.equal(this.$("dialog:first").is(":visible"), false, "Dialog is hidden when dismiss button is clicked");
 });
+
+test("Binds `aria-describedby` and `aria-labelledby` attributes to title and description respectively", function(assert) {
+	assert.expect(2);
+	const sampleTitle = "A sample title";
+	const sampleDescription = "A sample description";
+	let $component = this.$("dialog:first");
+
+	this.render(hbs`{{alert-message title="${sampleTitle}" description="${sampleDescription}"}}`);
+
+	assert.equal($component.attr("aria-describedby"), sampleDescription, "Has proper description");
+	assert.equal($component.attr("aria-labelledby"), sampleTitle, "Has proper label");
+});
