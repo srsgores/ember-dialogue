@@ -8,21 +8,19 @@ moduleForComponent("alert-message", "Integration | Component | alert message", {
 });
 
 test("it renders", function(assert) {
-	// Set any properties with this.set("myProperty", "value");
-	// Handle any actions with this.on("myAction", function(val) { ... });
-
-	this.render(hbs`{{alert-message}}`);
+	this.set("sampleText", "template block text");
+	this.render(hbs`{{alert-message dismissible=false}}`);
 
 	assert.equal(this.$().text().trim(), "");
 
 	// Template block usage:
 	this.render(hbs`
-		{{#alert-message}}
-			template block text
+		{{#alert-message dismissible=false}}
+			{{sampleText}}
 		{{/alert-message}}
 	`);
 
-	assert.equal(this.$().text().trim(), "template block text");
+	assert.equal(this.$().text().trim(), this.get("sampleText"));
 });
 
 test("it is a `<dialog>` element", function(assert) {
