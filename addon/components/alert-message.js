@@ -15,5 +15,10 @@ export default Ember.Component.extend({
 	dismissible: true,
 	role: Ember.computed("modal", function() {
 		return this.get("modal") ? "alertdialog" : "dialog";
-	})
+	}),
+	actions: {
+		dismiss() {
+			this.toggleProperty("open");
+		}
+	}
 });
