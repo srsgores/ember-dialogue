@@ -27,14 +27,13 @@ test("it renders", function(assert) {
 
 test("it is a `<dialog>` element", function(assert) {
 	this.render(hbs`{{alert-message}}`);
-
-	assert.equal(this.tagName.toLowerCase(), "dialog");
+	assert.equal(this.$("dialog:first").length, 1);
 });
 
 test("it has an `open` attribute by default", function(assert) {
 	this.render(hbs`{{alert-message}}`);
 
-	assert.ok(this.$().attr("open"));
+	assert.ok(this.$("dialog:first").attr("open"));
 });
 
 test("it has a dismiss button when the user allows dismissal", function(assert) {
@@ -44,8 +43,12 @@ test("it has a dismiss button when the user allows dismissal", function(assert) 
 });
 
 test("it dismisses when the user calls dismiss", function(assert) {
+	assert.expect(2);
 	this.render(hbs`{{alert-message}}`);
 
+	let $component = this.$("dialog:first");
+	assert.equal($component.is(":visible"), true, "Dialog is visible by default");
 	this.$(DISMISS_SELECTOR).click();
-	assert.equal(this.$().is(":visible"), false);
+
+	assert.equal(this.$("dialog:first").is(":visible"), false, "Dialog is hidden when dismiss button is clicked");
 });
