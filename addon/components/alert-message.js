@@ -3,5 +3,15 @@ import layout from "../templates/components/alert-message";
 
 export default Ember.Component.extend({
 	tagName: "dialog",
-	layout: layout
+	layout: layout,
+	attributeBindings: ["open", "role", "aria-labelledby", "aria-describedby"],
+	modal: false,
+	title: null,
+	description: null,
+	open: true,
+	"aria-labelledby": Ember.computed.alias("title"),
+	"aria-describedby": Ember.computed.alias("description"),
+	role: Ember.computed("modal", function() {
+		return this.get("modal") ? "alertdialog" : "dialog";
+	})
 });
