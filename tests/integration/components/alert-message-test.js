@@ -57,10 +57,10 @@ test("Binds `aria-describedby` and `aria-labelledby` attributes to title and des
 	assert.expect(2);
 	this.set("sampleTitle", "A sample title");
 	this.set("sampleDescription", "A sample description");
-	let $component = this.$("dialog:first");
 
 	this.render(hbs`{{alert-message title=sampleTitle description=sampleDescription}}`);
 
+	let $component = this.$("dialog:first");
 	assert.equal($component.attr("aria-describedby"), this.get("sampleDescription"), "Has proper description");
 	assert.equal($component.attr("aria-labelledby"), this.get("sampleTitle"), "Has proper label");
 });
