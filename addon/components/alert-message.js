@@ -7,7 +7,9 @@ export default Ember.Component.extend({
 	attributeBindings: ["open", "role", "aria-labelledby", "aria-describedby"],
 	modal: false,
 	title: null,
+	hasTitle: Ember.computed.notEmpty("title"),
 	description: null,
+	hasDescription: Ember.computed.notEmpty("description"),
 	open: true,
 	"aria-labelledby": Ember.computed.alias("title"),
 	"aria-describedby": Ember.computed.alias("description"),
@@ -19,6 +21,7 @@ export default Ember.Component.extend({
 	actions: {
 		dismiss() {
 			this.toggleProperty("open");
+			this.sendAction("onDismiss");
 		}
 	}
 });

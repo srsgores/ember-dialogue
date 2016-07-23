@@ -76,3 +76,25 @@ test("Binds `aria-describedby` and `aria-labelledby` attributes to title and des
 	assert.equal($component.attr("aria-describedby"), this.get("sampleDescription"), "Has proper description");
 	assert.equal($component.attr("aria-labelledby"), this.get("sampleTitle"), "Has proper label");
 });
+
+test("it displays the `title` and `description` only if block params aren't provided", function(assert) {
+	const sampleTitle = "A sample title";
+	const sampleDescription = "A sample description";
+	this.set("sampleTitle", sampleTitle);
+	this.set("sampleDescription", sampleDescription);
+
+	this.render(hbs`{{alert-message title=sampleTitle description=sampleDescription}}`);
+
+	let $component = this.$("dialog:first");
+
+	assert.equal($component.find(".dialog-title").text().trim(), sampleTitle);
+	assert.equal($component.find(".dialog-description").text().trim(), sampleDescription);
+
+	const message = "Sorry, but the operation failed";
+	this.set("message", message);
+	this.render(hbs`{{#alert-message title=sampleTitle description=sampleDescription dismissible=false}}<h1>{{message}}</h1>{{/alert-message}}`);
+
+	$component = this.$("dialog:first");
+
+	assert.equal($component.text().trim(), message);
+});

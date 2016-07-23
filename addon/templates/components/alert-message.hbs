@@ -4,4 +4,13 @@
 	</header>
 {{/if}}
 
-{{yield}}
+{{#if hasBlock}}
+	{{yield}}
+{{else}}
+	{{#if hasTitle}}
+		<h1 class="dialog-title">{{title}}</h1>
+	{{/if}}
+	{{#if hasDescription}}
+		<p class="dialog-description">{{description}}</p>
+	{{/if}}
+{{/if}}
