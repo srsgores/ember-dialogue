@@ -1,0 +1,37 @@
+<header role="banner">
+	<h1 class="site-title"><em>Ember-dialogue</em></h1>
+	<p>An ember addon for accessible <code>&lt;dialog&gt;</code> alerts</p>
+</header>
+
+<main role="main">
+	<article class="demo-container">
+		<h1>Usage</h1>
+		<section class="demo">
+			<h1>Basic</h1>
+			{{alert-message title="Authentication Failed" description="We could not match your username and password with an existing user."}}
+		</section>
+		<section class="demo">
+			<h1>Customized <code>dismiss</code> text</h1>
+			{{alert-message dismissText="OK, I Understand" title="Session Timeout" description="You have been idle for over 25 minutes, and your session has timed out.  Please re-authenticate"}}
+		</section>
+		<section class="demo">
+			<h1></h1>
+		</section>
+		<section class="demo">
+			<h1>Advanced With Form</h1>
+			<p>Placing a <code>&lt;form&gt;</code> wthin a <code>&lt;dialog&gt;</code> element <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#Example_2" target="_blank">is actually a best-practice</a>.  Using this technique, alongside HTML5 <code>autofocus</code>, we can allow the <code>&lt;form&gt;</code> to naturally gain focus:</p>
+			{{#alert-message title="Please Re-authenticate" description="You must re-validate your session, as a time-out has occurred"}}
+				<form method="dialog">
+					<label for="email">Email</label>
+					{{input type="email" value=userEmail required=true autofocus=true id="email"}}
+					<label for="password">Password</label>
+					{{input type="password" id="password" value=userPassword required=true}}
+					<footer>
+						<button type="submit">Re-Authenticate</button>
+					</footer>
+				</form>
+			{{/alert-message}}
+			<p>Notice the attribute on the <code>&lt;form&gt;</code>, where we set <code>method="dialog"</code>; this prevents the form from submitting, and dismisses the dialog once the form validates.</p>
+		</section>
+	</article>
+</main>
