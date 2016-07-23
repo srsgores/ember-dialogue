@@ -39,8 +39,16 @@ test("it has an `open` attribute by default", function(assert) {
 test("it has a dismiss button when the user allows dismissal", function(assert) {
 	this.render(hbs`{{alert-message}}`);
 
-	assert.ok(this.$(DISMISS_SELECTOR).length > 1);
+	assert.ok(this.$(DISMISS_SELECTOR).length > 0);
 });
+
+test("it doesn't have a dismiss button when the user disables dismissal", function(assert) {
+	this.render(hbs`{{alert-message dismissible=false}}`);
+
+	assert.equal(this.$(DISMISS_SELECTOR).length, 0);
+});
+
+
 
 test("it dismisses when the user calls dismiss", function(assert) {
 	assert.expect(2);
