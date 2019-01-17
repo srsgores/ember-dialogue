@@ -1,13 +1,13 @@
 {
   "name": "ember-dialogue",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "wai-aria-compliant <dialog> elements in ember",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/srsgores/ember-dialogue",
   "license": "MIT",
-  "author": "",
+  "author": "Sean Goresht",
   "directories": {
     "doc": "doc",
     "test": "tests"
